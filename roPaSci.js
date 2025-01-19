@@ -3,11 +3,11 @@ function getComputerChoice() {
     return a===1 ? `rock`: a===2? `paper` : `scissors`;
 }
 
-function getHumanChoice(choice){
+function getHumanChoice(){
     let humanChoiceReg = prompt("Rock Paper or Scissors?");
-    regRock = /^rock$/i;
-    regPaper = /^paper$/i;
-    regScissors = /^scissors$/i;
+    const regRock = /^rock$/i;
+    const regPaper = /^paper$/i;
+    const regScissors = /^scissors$/i;
 
     if (humanChoiceReg.match(regRock)) {
         return `rock`;
@@ -22,22 +22,12 @@ function getHumanChoice(choice){
 }
 
 let humanScore = 0;
-let ComputerScore = 0;
+let computerScore = 0;
 
-// function playRound(humanChoice, computerChoice) {
-//     if (getHumanChoice === `rock` && getComputerChoice === `scissors`) {
-//         console.log(`Human wins! ${getHumanChoice} beats ${getComputerChoice}`);
-//         humanScore++;
-//     }
-//     else if (getHumanChoice === `rock` && getComputerChoice === `paper`){
-//         console.log(`Computer wins! ${getComputerChoice} beats ${getHumanChoice}`);
-//         ComputerScore++;
-//     }
-    
-
-// }
 
 function playRound(humanChoice, computerChoice){
+
+    
     let choiceCombo = humanChoice + computerChoice ;
     
     switch(choiceCombo){
@@ -45,20 +35,34 @@ function playRound(humanChoice, computerChoice){
         case `paperrock`:
         case `scissorspaper`:
         case `rockscissors`:
-            console.log(`Human wins! ${getHumanChoice} beats ${getComputerChoice}`);
+            console.log(`Human wins! ${humanChoice} beats ${computerChoice}`);
             humanScore++;
             break;
 
         case `scissorsrock`:
         case `paperscissors`:
         case `rockpaper`:
-            console.log(`Computer wins! ${getComputerChoice} beats ${getHumanChoice}`);
+            console.log(`Computer wins! ${computerChoice} loses to ${humanChoice}`);
             ComputerScore++;
             break;
+        case `scissorsscissors`:
+        case `rockrock`:
+        case `paperpaper`:
+            console.log(`It's a Tie...Both players chose ${ComputerChoice}`);
+            break;
         default:
-            console.log(`It's a Tie...Both players chose ${getComputerChoice()}`)
+            console.log("Something didn't quite go right..");
     }
 
 }
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+for(let round = 0; round<5;round++){
+    playRound(humanSelection, computerSelection);
+    console.log('humanScore:'+humanScore +'computerScore:'+computerScore );
+}
+    
 
 
