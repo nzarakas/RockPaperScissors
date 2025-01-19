@@ -42,27 +42,50 @@ function playRound(humanChoice, computerChoice){
         case `scissorsrock`:
         case `paperscissors`:
         case `rockpaper`:
-            console.log(`Computer wins! ${computerChoice} loses to ${humanChoice}`);
-            ComputerScore++;
+            console.log(`Computer wins! ${humanChoice} loses to ${computerChoice}`);
+            computerScore++;
             break;
         case `scissorsscissors`:
         case `rockrock`:
         case `paperpaper`:
-            console.log(`It's a Tie...Both players chose ${ComputerChoice}`);
+            console.log(`It's a Tie...Both players chose ${computerChoice}`);
             break;
         default:
             console.log("Something didn't quite go right..");
     }
 
 }
-
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-for(let round = 0; round<5;round++){
-    playRound(humanSelection, computerSelection);
-    console.log('humanScore:'+humanScore +'computerScore:'+computerScore );
+function playGame() {
+    
+    let winner = 0;
+    while(!winner){
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+    
+        playRound(humanSelection, computerSelection);
+        console.log('humanScore:'+humanScore +'   computerScore:'+computerScore );
+    
+        if(humanScore === 3) {
+            console.log("You win!")
+            winner = 1;
+        }
+        else if (computerScore === 3) {
+            console.log("Computer wins..")
+            winner = 1;
+        }
+    }
+    winner = 0;
+    humanScore = 0;
+    computerScore = 0;
 }
+
+playGame();
+
+
+
+
+
+
     
 
 
